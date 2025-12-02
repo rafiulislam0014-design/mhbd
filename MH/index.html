@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Home BD</title>
+    <link rel="website icon" type="jpg" href="logo.jpg">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-img {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #2c9c8a;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c9c8a;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #2c9c8a;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            z-index: 101;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            margin-bottom: 50px;
+        }
+        
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero p {
+            font-size: 22px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn-hero {
+            display: inline-block;
+            background-color: #2c9c8a;
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn-hero:hover {
+            background-color: #237a6c;
+            transform: translateY(-3px);
+        }
+        
+        /* Rooms Section */
+        .rooms {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            color: #333;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #2c9c8a;
+            margin: 15px auto 0;
+        }
+        
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .room-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            background-color: #fff;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .room-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            background-color: #f5f7fa;
+        }
+        
+        .room-content {
+            padding: 20px;
+        }
+        
+        .room-content h3 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 22px;
+        }
+        
+        .room-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c9c8a;
+            margin-bottom: 15px;
+        }
+        
+        .room-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .room-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .room-features li:before {
+            content: '✓';
+            color: #2c9c8a;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        
+        .btn-book {
+            display: block;
+            width: 100%;
+            background-color: #2c9c8a;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-book:hover {
+            background-color: #237a6c;
+        }
+        
+        /* Short Term Packages Section */
+        .short-term {
+            padding: 80px 0;
+            background-color: #f5f7fa;
+        }
+        
+        .short-term-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .package-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            background-color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .package-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #2c9c8a;
+        }
+        
+        .package-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c9c8a;
+            margin: 15px 0;
+        }
+        
+        /* Facilities Section */
+        .facilities {
+            padding: 80px 0;
+            background-color: #f5f7fa;
+        }
+        
+        .facilities-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .facility-item {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .facility-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .facility-item h3 {
+            color: #2c9c8a;
+            margin-bottom: 20px;
+            font-size: 22px;
+            border-bottom: 2px solid #2c9c8a;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        
+        .facility-list {
+            list-style: none;
+        }
+        
+        .facility-list li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+        
+        .facility-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2c9c8a;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .facility-number {
+            font-weight: bold;
+            color: #2c9c8a;
+            margin-right: 8px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        
+        .mission-statement {
+            background-color: #f5f7fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border-left: 5px solid #2c9c8a;
+            font-style: italic;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: #f5f7fa;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .address {
+            padding: 20px;
+        }
+        
+        .address h3 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+        }
+        
+        .address p {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info p:before {
+            content: '•';
+            color: #2c9c8a;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #2c9c8a;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #2c9c8a;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #34495e;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #2c9c8a;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        /* Responsive Design - Mobile */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 0;
+                position: relative;
+            }
+            
+            .logo-container {
+                margin-bottom: 0;
+                justify-content: flex-start;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-left: auto;
+            }
+            
+            /* Desktop Navigation - Hidden on Mobile */
+            .desktop-nav {
+                display: none;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+            }
+            
+            nav.show {
+                display: block;
+                position: absolute;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+                border-radius: 0 0 10px 10px;
+                padding: 10px 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                margin-top: 0;
+                padding: 0;
+            }
+            
+            nav ul li {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(44, 156, 138, 0.1);
+            }
+            
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 20px;
+                color: #333;
+                font-weight: 500;
+                transition: all 0.3s;
+            }
+            
+            nav ul li a:hover {
+                background-color: rgba(44, 156, 138, 0.1);
+                color: #2c9c8a;
+            }
+            
+            .hero h1 {
+                font-size: 38px;
+                padding: 0 10px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+                padding: 0 10px;
+            }
+            
+            .rooms-grid,
+            .short-term-grid,
+            .facilities-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+            
+            .hero {
+                padding: 80px 20px;
+            }
+            
+            .rooms,
+            .short-term,
+            .facilities,
+            .about,
+            .contact {
+                padding: 50px 0;
+            }
+            
+            .room-card,
+            .package-card,
+            .facility-item {
+                margin-bottom: 20px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .facility-item {
+                padding: 20px;
+            }
+            
+            .facility-list li {
+                font-size: 16px;
+                padding-left: 25px;
+            }
+            
+            .facilities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Small Mobile Devices */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .btn-hero {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            
+            .logo-text {
+                font-size: 20px;
+            }
+            
+            .logo-img {
+                height: 50px;
+                width: 50px;
+            }
+            
+            .room-content h3 {
+                font-size: 20px;
+            }
+            
+            .room-price,
+            .package-price {
+                font-size: 18px;
+            }
+            
+            .facility-item h3 {
+                font-size: 20px;
+            }
+            
+            .facility-list li {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <!-- Logo Section with Round Image -->
+            <div class="logo-container">
+                <img src="logo.jpg" alt="Master Home Logo" class="logo-img">
+                <div class="logo-text">Master Home</div>
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#rooms">Rooms</a></li>
+                    <li><a href="#packages">Short Term</a></li>
+                    <li><a href="#facilities">Facilities</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Live Without Hassle</h1>
+            
+            <a href="#rooms" class="btn-hero">Book Your Stay</a>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section class="rooms" id="rooms">
+        <div class="container">
+            <h2 class="section-title">Our Rooms (Monthly Packages)</h2>
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <img src="1ps1.jpg" alt="VIP Room" class="room-image">
+                    <div class="room-content">
+                        <h3>VIP-1 Sit Room</h3>
+                        <div class="room-price">10,000 TK / Month</div>
+                        <ul class="room-features">
+                            <li>Comfortable VIP bed</li>
+                            <li>Common washroom</li>
+                            <li>Free High-Speed Wi-Fi</li>
+                            <li>Lunch & Dinner included</li>
+                            <li>Study table with lamp</li>
+                        </ul>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <img src="room 1.jpg" alt="4 Person Room" class="room-image">
+                    <div class="room-content">
+                        <h3>4 Person Single Sit</h3>
+                        <div class="room-price">9,500 TK / Month</div>
+                        <ul class="room-features">
+                            <li>Comfortable bed for each person</li>
+                            <li>Private bathroom</li>
+                            <li>Free High-Speed Wi-Fi</li>
+                            <li>Lunch & Dinner included</li>
+                            <li>Individual lockers</li>
+                            <li>Study table with lamp</li>
+                        </ul>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <img src="#" alt="4 Person Room" class="room-image">
+                    <div class="room-content">
+                        <h3>4 Person Double Sit</h3>
+                        <div class="room-price">9,000 TK / Month</div>
+                        <ul class="room-features">
+                            <li>Comfortable bed for each person</li>
+                            <li>Private bathroom</li>
+                            <li>Free High-Speed Wi-Fi</li>
+                            <li>Lunch & Dinner included</li>
+                            <li>Individual lockers</li>
+                            <li>Study table with lamp</li>
+                        </ul>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <img src="#" alt="4 Person Room" class="room-image">
+                    <div class="room-content">
+                        <h3>4 Person Double Sit</h3>
+                        <div class="room-price">8,500 TK / Month</div>
+                        <ul class="room-features">
+                            <li>Comfortable bed for each person</li>
+                            <li>Common washroom</li>
+                            <li>Free High-Speed Wi-Fi</li>
+                            <li>Lunch & Dinner included</li>
+                            <li>Individual lockers</li>
+                            <li>Study table with lamp</li>
+                        </ul>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <img src="#" alt="8 Person Room" class="room-image">
+                    <div class="room-content">
+                        <h3>8 Person Single Sit</h3>
+                        <div class="room-price">8,000 TK / Month</div>
+                        <ul class="room-features">
+                            <li>Comfortable bed for each person</li>
+                            <li>Private bathroom</li>
+                            <li>Free High-Speed Wi-Fi</li>
+                            <li>Lunch & Dinner included</li>
+                            <li>Individual lockers</li>
+                            <li>Study table with lamp</li>
+                        </ul>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <img src="#" alt="6 Person Room" class="room-image">
+                    <div class="room-content">
+                        <h3>6 Person Shared Room</h3>
+                        <div class="room-price">7,500 TK / Month</div>
+                        <ul class="room-features">
+                            <li>Comfortable bed for each person</li>
+                            <li>Private bathroom</li>
+                            <li>Free High-Speed Wi-Fi</li>
+                            <li>Lunch & Dinner included</li>
+                            <li>Individual lockers</li>
+                            <li>Study table with lamp</li>
+                        </ul>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <img src="s10.jpg" alt="10 Person Room" class="room-image">
+                    <div class="room-content">
+                        <h3>10 Person Shared Room</h3>
+                        <div class="room-price">7,000 TK / Month</div>
+                        <ul class="room-features">
+                            <li>Large room for 10 persons</li>
+                            <li>Private bathroom</li>
+                            <li>Free High-Speed Wi-Fi</li>
+                            <li>Lunch & Dinner included</li>
+                            <li>Individual lockers</li>
+                            <li>Study table with lamp</li>
+                        </ul>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <img src="#" alt="12 Person Room" class="room-image">
+                    <div class="room-content">
+                        <h3>12 Person Shared Room</h3>
+                        <div class="room-price">6,500 TK / Month</div>
+                        <ul class="room-features">
+                            <li>Economical for 12 persons</li>
+                            <li>Private bathroom</li>
+                            <li>Free High-Speed Wi-Fi</li>
+                            <li>Lunch & Dinner included</li>
+                            <li>Individual lockers</li>
+                            <li>Study table with lamp</li>
+                        </ul>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Short Term Packages Section -->
+    <section class="short-term" id="packages">
+        <div class="container">
+            <h2 class="section-title">Short Term Packages</h2>
+            <div class="short-term-grid">
+                <div class="package-card">
+                    <div class="package-icon">🏠</div>
+                    <h3>1 Day Package</h3>
+                    <div class="package-price">1,000 TK</div>
+                    <p>Perfect for short visits or emergencies</p>
+                    <p>All facilities included</p>
+                   
+                    <button class="btn-book">Book 1 Day</button>
+                </div>
+                <div class="package-card">
+                    <div class="package-icon">🏠</div>
+                    <h3>3 Days Package</h3>
+                    <div class="package-price">2,000 TK</div>
+                    <p>Ideal for weekend stays</p>
+                    <p>All meals included</p>
+                    <p>Discounted rate for 3 days</p>
+                    <button class="btn-book">Book 3 Days</button>
+                </div>
+                <div class="package-card">
+                    <div class="package-icon">🏠</div>
+                    <h3>15 Days Package</h3>
+                    <div class="package-price">6,000 TK</div>
+                    <p>Best for short courses or training</p>
+                    <p>All meals and facilities</p>
+                    <p>Special discount for 15 days</p>
+                    <button class="btn-book">Book 15 Days</button>
+                </div>
+                   <div class="package-card">
+                    <div class="package-icon">🏠</div>
+                    <h3>30 Days Package</h3>
+                    <div class="package-price">10,000 TK</div>
+                    <p>Best for short courses or training</p>
+                    <p>All meals and facilities</p>
+                    <p>Special discount for 30 days</p>
+                    <button class="btn-book">Book 30 Days</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section - English -->
+    <section class="facilities" id="facilities">
+        <div class="container">
+            <h2 class="section-title">Our Facilities (30+ Facilities)</h2>
+            <div class="facilities-container">
+                <div class="facilities-grid">
+                    <div class="facility-item">
+                        <h3>Facilities 1-15</h3>
+                        <ul class="facility-list">
+                            <li><span class="facility-number">1.</span> Personal locker arrangement</li>
+                            <li><span class="facility-number">2.</span> CCTV surveillance</li>
+                            <li><span class="facility-number">3.</span> Two meals (Lunch & Dinner)</li>
+                            <li><span class="facility-number">4.</span> Shoe storage space</li>
+                            <li><span class="facility-number">5.</span> 24/7 security</li>
+                            <li><span class="facility-number">6.</span> AC/Non-AC rooms</li>
+                            <li><span class="facility-number">7.</span> Washroom cleaning service</li>
+                            <li><span class="facility-number">8.</span> Comfortable modern beds</li>
+                            <li><span class="facility-number">9.</span> First aid facilities</li>
+                            <li><span class="facility-number">10.</span> Advanced water filter</li>
+                            <li><span class="facility-number">11.</span> Study area</li>
+                            <li><span class="facility-number">12.</span> High-speed internet</li>
+                            <li><span class="facility-number">13.</span> Separate dining space</li>
+                            <li><span class="facility-number">14.</span> Door locks</li>
+                            <li><span class="facility-number">15.</span> Mirrors</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="facility-item">
+                        <h3>Facilities 16-31</h3>
+                        <ul class="facility-list">
+                            <li><span class="facility-number">16.</span> Tasteful furniture</li>
+                            <li><span class="facility-number">17.</span> Clothes hangers</li>
+                            <li><span class="facility-number">18.</span> Roof garden</li>
+                            <li><span class="facility-number">19.</span> Bengali & English newspapers</li>
+                            <li><span class="facility-number">20.</span> Refrigerator</li>
+                            <li><span class="facility-number">21.</span> Baskets & waste management</li>
+                            <li><span class="facility-number">22.</span> Plates, bowls</li>
+                            <li><span class="facility-number">23.</span> Cleaning service</li>
+                            <li><span class="facility-number">24.</span> Proper light & ventilation</li>
+                            <li><span class="facility-number">25.</span> Conversation area</li>
+                            <li><span class="facility-number">26.</span> Lift service</li>
+                            <li><span class="facility-number">27.</span> Waste disposal system</li>
+                            <li><span class="facility-number">28.</span> Bucket, mug, mat</li>
+                            <li><span class="facility-number">29.</span> Window curtains</li>
+                            <li><span class="facility-number">30.</span> Pillow, mattress & bed cover provided</li>
+                            <li><span class="facility-number">31.</span> Rooftop facility</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mission-statement">
+                    <p><strong>Other facilities are available (terms and conditions apply).</strong></p>
+                    <p><strong>Our main goal is to provide bachelor life with comfortable and improved environment within affordable range.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Master Home</h2>
+            <div class="about-content">
+                <p>Welcome to Master Home, where comfort meets convenience. We are dedicated to providing you with the best accommodation experience in Dhaka.</p>
+                <p>Our mission is to create a home away from home for all our guests. With years of experience in hospitality, we understand what students and working professionals need for a comfortable stay.</p>
+                <p>Our team of professional staff is available 24/7 to ensure your stay is perfect. From check-in to check-out, we're here to make your experience memorable.</p>
+                <p>Located in Sukrabad, Dhaka, Master Home offers easy access to major IELTS centers, mentors, Japanese language centers, admission students, universities, business districts, and transportation hubs. We provide a safe, secure, and comfortable environment for all our residents.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="address">
+                    <h3>Visit Master Home</h3>
+                    <p>We're located in the heart of Sukrabad, easily accessible from all major transportation hubs.</p>
+                    <div class="contact-info">
+                        <p>Sukrabad, Dhaka, Bangladesh, 1207</p>
+                        <p>Phone: 01613-463343</p>
+                        <p>WhatsApp: +880 1613-463343</p>
+                        <p>Email: masterhostel13@gmail.com</p>
+                    </div>
+                </div>
+                <div class="address">
+                    <h3>Business Hours</h3>
+                    <div class="contact-info">
+                        <p>Every Day: 8:00 AM - 10:00 PM</p>
+                        <p>24/7 Reception for Guests</p>
+                        <p>Check-in: 12:00 PM onwards</p>
+                        <p>Check-out: 11:00 AM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Master Home</h3>
+                    <p>Your home away from home. Experience comfort, convenience, and exceptional service.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#rooms">Rooms</a></li>
+                        <li><a href="#packages">Short Term</a></li>
+                        <li><a href="#facilities">Facilities</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/masterhostel13/about" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Master Home. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('show');
+            // Change menu icon
+            this.textContent = this.textContent === '☰' ? '✕' : '☰';
+            
+            // Prevent body scrolling when menu is open
+            if (nav.classList.contains('show')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('nav').classList.remove('show');
+                document.querySelector('.mobile-menu-btn').textContent = '☰';
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (nav.classList.contains('show') && 
+                !nav.contains(event.target) && 
+                !menuBtn.contains(event.target)) {
+                nav.classList.remove('show');
+                menuBtn.textContent = '☰';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Booking buttons functionality
+        document.querySelectorAll('.btn-book').forEach(button => {
+            button.addEventListener('click', function() {
+                const roomName = this.closest('.room-card, .package-card').querySelector('h3').textContent;
+                alert(`Thank you for your interest in our ${roomName}! Please contact us at 01613-463343 to complete your booking.`);
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
